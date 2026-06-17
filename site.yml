@@ -1,0 +1,7 @@
+---
+# site.yml
+- name: Install and configure Nginx on Ubuntu
+  hosts: role_webserver
+  become: true
+  roles:
+    - nginx

@@ -1,0 +1,29 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for nginx
+
+# ─── Nginx version ────────────────────────────────────────────────────────────
+nginx_version: "1.24.0"          # pinned version installed on both OS
+
+# ─── Port ─────────────────────────────────────────────────────────────────────
+# NOTE: this MUST stay 80. The security group only opens port 80 from the
+# ALB to the instances, and the ALB target group forwards on port 80. If you
+# change this, you also have to update securitygroup/main.tf and
+# alb/main.tf (aws_lb_target_group port) in the terraform repo to match.
+nginx_port: 80
+
+# ─── Document root ────────────────────────────────────────────────────────────
+nginx_root: "/var/www/html"
+
+# ─── Server name ──────────────────────────────────────────────────────────────
+nginx_server_name: "_"            # _ means catch-all / default server
+
+# ─── Worker config ────────────────────────────────────────────────────────────
+nginx_worker_processes: "auto"
+nginx_worker_connections: 1024
+
+# ─── Logging ──────────────────────────────────────────────────────────────────
+nginx_access_log: "/var/log/nginx/access.log"
+nginx_error_log:  "/var/log/nginx/error.log"
+
+ansible_distribution_release: "jammy"

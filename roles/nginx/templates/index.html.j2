@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deployed by Ansible</title>
+  <style>
+    body { font-family: sans-serif; background: #0f172a; color: #e2e8f0; display: flex; height: 100vh; align-items: center; justify-content: center; margin: 0; }
+    .card { background: #1e293b; padding: 2.5rem 3rem; border-radius: 12px; text-align: center; }
+    h1 { color: #38bdf8; margin-bottom: .5rem; }
+    p { color: #94a3b8; margin: .25rem 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>nginx is up</h1>
+    <p>Provisioned by Terraform, configured by Ansible.</p>
+    <p>Host: {{ ansible_facts['hostname'] }}</p>
+    <p>Deployed on: {{ now(fmt='%Y-%m-%d %H:%M:%S') }}</p>
+  </div>
+</body>
+</html>

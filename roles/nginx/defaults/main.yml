@@ -1,15 +1,10 @@
 #SPDX-License-Identifier: MIT-0
 ---
-# defaults file for nginx
 
 # ─── Nginx version ────────────────────────────────────────────────────────────
-nginx_version: "1.24.0"          # pinned version installed on both OS
+nginx_version: "1.24.0"    
 
 # ─── Port ─────────────────────────────────────────────────────────────────────
-# NOTE: this MUST stay 80. The security group only opens port 80 from the
-# ALB to the instances, and the ALB target group forwards on port 80. If you
-# change this, you also have to update securitygroup/main.tf and
-# alb/main.tf (aws_lb_target_group port) in the terraform repo to match.
 nginx_port: 80
 
 # ─── Document root ────────────────────────────────────────────────────────────

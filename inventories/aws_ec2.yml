@@ -1,14 +1,5 @@
 # inventories/aws_ec2.yml
-#
-# Dynamic inventory: the ASG can scale instances up/down and recreate them on
-# every "terraform apply", so a static hosts.ini with hardcoded IPs goes
-# stale immediately. This queries AWS directly at playbook-run time instead.
-#
-# These instances live in PRIVATE subnets (no public IP) by design, so we
-# can't SSH to them directly from Jenkins. We reach them by jumping through
-# the bastion host's public IP, which the Jenkins pipeline exports as the
-# BASTION_PUBLIC_IP environment variable right after "terraform apply"
-# (read from the bastion-public-ip Terraform output).
+
 plugin: amazon.aws.aws_ec2
 regions:
   - us-east-1

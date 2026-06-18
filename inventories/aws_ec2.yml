@@ -16,7 +16,7 @@ hostnames:
 # doesn't exist on the inventory host vars the aws_ec2 plugin returns. The
 # correct path is "tags.Role" (tags is a dict of the instance's AWS tags).
 keyed_groups:
- - key: ec2_tags.Role   #  tags.Role
+ - key: tags.Role   # ec2_tags.Role
    prefix: role
    separator: "_"
 

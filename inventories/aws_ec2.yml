@@ -27,4 +27,4 @@ compose:
  ansible_host: private_ip_address
  ansible_user: "'ubuntu'"
 # bastion_ip: "query('amazon.aws.aws_ec2', filter={'tag:Role': 'bastion', 'instance-state-name': 'running'})[0].public_ip_address"
- ansible_ssh_common_args: "'-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p ubuntu@' ~ lookup('env','BASTION_PUBLIC_IP') ~ '\"'"
+ansible_ssh_common_args: "'-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardAgent=yes -o ProxyCommand=\"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardAgent=yes -W %h:%p ubuntu@' ~ lookup('env','BASTION_PUBLIC_IP') ~ '\"'"

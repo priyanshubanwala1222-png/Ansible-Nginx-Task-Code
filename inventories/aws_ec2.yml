@@ -12,19 +12,15 @@ filters:
 hostnames:
  - private-ip-address
 
-# NOTE: the original version of this file grouped on "tag.Role" - that key
-# doesn't exist on the inventory host vars the aws_ec2 plugin returns. The
-# correct path is "tags.Role" (tags is a dict of the instance's AWS tags).
 keyed_groups:
  - key: tags.Role   # ec2_tags.Role
    prefix: role
    separator: "_"
 
-plugin_vars_vars_files:
-  - ./bastion_vars.yml
+# plugin_vars_vars_files:
+  # - ./bastion_vars.yml
 
-compose:
- ansible_host: private_ip_address
- ansible_user: "'ubuntu'"
-# bastion_ip: "query('amazon.aws.aws_ec2', filter={'tag:Role': 'bastion', 'instance-state-name': 'running'})[0].public_ip_address"
-ansible_ssh_common_args: "'-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardAgent=yes -o ProxyCommand=\"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardAgent=yes -W %h:%p ubuntu@' ~ lookup('env','BASTION_PUBLIC_IP') ~ '\"'"
+# compose:
+ # ansible_host: private_ip_address
+ # ansible_user: "'ubuntu'"
+ # ansible_ssh_common_args: "'-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardAgent=yes -o ProxyCommand=\"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardAgent=yes -W %h:%p ubuntu@' ~ lookup('env','BASTION_PUBLIC_IP') ~ '\"'"
